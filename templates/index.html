@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Saqib Ali | Iron Man Portfolio</title>
+    <title>Saqib Ali | Portfolio</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -16,8 +16,13 @@
 <div class="hud">
     <img src="{{ url_for('static', filename='assets/profile.jpg') }}" class="profile-pic">
     <h1>SAQIB ALI</h1>
-    <p>Software Engineer | AI | Cybersecurity | Web</p>
+    <p>Software Engineer</p>
 </div>
+
+<!-- Voice Assistant Button -->
+<button id="voice-btn" title="Play Introduction Again">
+    🔊
+</button>
 
 <!-- ARC REACTOR -->
 <div id="reactor-container"></div>
@@ -33,14 +38,12 @@
 <section id="projects">
     <h2>Projects</h2>
     <div class="section-wrapper">
-        <!-- 3D container on LEFT -->
         <div id="projects-3d" class="section-3d"></div>
-        <!-- Info Box on RIGHT -->
-        <div class="info-box">
+        <div class="info-box" id="projects-info">
             <ul>
-                <li>AI Voice Assistant</li>
-                <li>5-Mic Voice Chat App</li>
-                <li>Cybersecurity Tools</li>
+                <li>Indoor Navigation System</li>
+                <li>Event Booking System</li>
+                <li>Online Chatting Web App</li>
             </ul>
         </div>
     </div>
@@ -50,11 +53,11 @@
     <h2>Skills</h2>
     <div class="section-wrapper">
         <div id="skills-3d" class="section-3d"></div>
-        <div class="info-box">
+        <div class="info-box" id="skills-info">
             <ul>
-                <li>Python / Flask</li>
-                <li>JavaScript / Three.js</li>
-                <li>Cybersecurity</li>
+                <li>Python / Flask / FastAPI</li>
+                <li>JavaScript / Three.js / React</li>
+                <li>Flutter / Cybersecurity / Cloud</li>
             </ul>
         </div>
     </div>
@@ -64,10 +67,12 @@
     <h2>Contact</h2>
     <div class="section-wrapper">
         <div id="contact-3d" class="section-3d"></div>
-        <div class="info-box">
+        <div class="info-box" id="contact-info">
             <ul>
-                <li>Email: saqib@example.com</li>
-                <li>GitHub: github.com/saqibali</li>
+                <li>Email: 03340584927wer@gmail.com</li>
+                <li>Phone: +923340584927</li>
+                <li class="github">GitHub: <a href="https://github.com/SaqibAli36" target="_blank">SaqibAli36</a></li>
+                <li class="linkedin">LinkedIn: <a href="https://www.linkedin.com/in/saqib-ali-8929b8322/" target="_blank">Saqib Ali</a></li>
             </ul>
         </div>
     </div>
@@ -80,18 +85,68 @@
 <script src="{{ url_for('static', filename='js/contact_3d.js') }}"></script>
 
 <script>
+/* ========================
+   Smooth scroll to info box
+======================== */
 function scrollToSection(id) {
-    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    const elementMap = {
+        'projects': 'projects-info',
+        'skills': 'skills-info',
+        'contact': 'contact-info'
+    };
+
+    const targetId = elementMap[id];
+    const element = document.getElementById(targetId);
+
+    if(element){
+        element.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
 }
 
-// Keyboard navigation
+/* ========================
+   Keyboard navigation
+======================== */
 document.addEventListener("keydown", function(e){
-    const scrollAmount = 100; // pixels per key press
+    const scrollAmount = 100;
     if(e.key === "ArrowDown"){
         window.scrollBy({top: scrollAmount, left:0, behavior:"smooth"});
     } else if(e.key === "ArrowUp"){
         window.scrollBy({top:-scrollAmount, left:0, behavior:"smooth"});
     }
+});
+
+/* ========================
+   Voice Assistant
+======================== */
+const introText = `
+Welcome! This is your virtual assistant introducing Saaqib Ali, 
+a software engineer and full-stack developer. 
+He specializes in Python, Flask, and FastAPI, with strong expertise in web application development. 
+Saaqib is also experienced with modern frontend frameworks like React, mobile development with Flutter, 
+and cloud technologies to build scalable and reliable solutions. 
+His goal is to deliver high-quality, innovative software that exceeds expectations. 
+Feel free to explore his portfolio to see his projects, skills, and ways to get in touch.
+`;
+
+const synth = window.speechSynthesis;
+const voiceBtn = document.getElementById("voice-btn");
+
+function playIntro(){
+    if(synth.speaking) synth.cancel();
+    const utter = new SpeechSynthesisUtterance(introText);
+    utter.rate = 1; // normal speed
+    utter.pitch = 1.1; 
+    synth.speak(utter);
+}
+
+// Autoplay when page loads
+window.addEventListener("load", () => {
+    playIntro();
+});
+
+// Button to replay
+voiceBtn.addEventListener("click", () => {
+    playIntro();
 });
 </script>
 

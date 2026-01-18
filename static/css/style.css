@@ -23,7 +23,7 @@ body {
     text-shadow: 0 0 15px cyan;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;     /* left-align HUD */
     z-index: 100;
 }
 
@@ -36,16 +36,19 @@ body {
     border: 2px solid cyan;
 }
 
+.hud h1,
+.hud p {
+    text-align: left;            /* left-aligned intro text */
+}
+
 .hud h1 {
     font-size: 36px;
     margin: 0;
-    text-align: center;
 }
 
 .hud p {
     font-size: 14px;
     letter-spacing: 2px;
-    text-align: center;
 }
 
 /* ======================== */
@@ -57,16 +60,16 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 20px;
     z-index: 100;
 }
 
 .panel {
-    padding: 15px 30px;
+    padding: 12px 25px;
     border: 2px solid cyan;
     border-radius: 8px;
     background: rgba(0, 255, 255, 0.1);
-    box-shadow: 0 0 20px cyan;
+    box-shadow: 0 0 15px cyan;
     cursor: pointer;
     transition: 0.3s;
     text-transform: uppercase;
@@ -84,7 +87,7 @@ body {
 /* ======================== */
 .section-wrapper {
     display: flex;
-    align-items: center; /* vertically center info box */
+    align-items: flex-start; /* top align 3D and info box */
     justify-content: center;
     width: 100%;
     margin: 50px 0;
@@ -102,7 +105,7 @@ body {
     min-width: 300px;
     max-width: 600px;
     position: relative;
-    overflow: hidden; /* ensure orbiters stay inside */
+    overflow: hidden; /* prevent orbiters from overflowing */
 }
 
 /* ======================== */
@@ -118,16 +121,28 @@ body {
     min-width: 250px;
     max-width: 400px;
     display: flex;
-    align-items: center;       /* vertical center */
-    justify-content: center;   /* optional: center text inside */
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     z-index: 10;               /* stay above 3D canvas */
+}
+
+.info-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.info-box li {
+    margin-bottom: 10px;
+    font-size: 16px;
 }
 
 /* ======================== */
 /*       HEADINGS & TEXT    */
 /* ======================== */
 h2 {
-    text-align: center;
+    text-align: center; /* Section headings centered */
     font-size: 28px;
     text-shadow: 0 0 10px cyan;
     margin-bottom: 20px;
@@ -169,7 +184,7 @@ body::-webkit-scrollbar-thumb:hover {
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
     .hud h1 {
         font-size: 28px;
     }
@@ -180,4 +195,80 @@ body::-webkit-scrollbar-thumb:hover {
         width: 60px;
         height: 60px;
     }
+
+    .info-box {
+        padding: 15px;
+        min-width: 200px;
+        max-width: 90%;
+    }
+
+    .panel {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hud h1 {
+        font-size: 22px;
+    }
+    .hud p {
+        font-size: 11px;
+    }
+    .hud .profile-pic {
+        width: 50px;
+        height: 50px;
+    }
+
+    .panel {
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .info-box li {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+}
+
+/* ======================== */
+/*      CONTACT LINKS       */
+/* ======================== */
+.info-box li.github a,
+.info-box li.linkedin a {
+    color: cyan;
+    text-decoration: none;
+}
+
+.info-box li.github a:hover,
+.info-box li.linkedin a:hover {
+    text-decoration: underline;
+}
+#voice-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 101;
+    padding: 10px 15px;
+    font-size: 18px;
+    border: 2px solid cyan;
+    border-radius: 8px;
+    background: rgba(0, 255, 255, 0.1);
+    color: cyan;
+    cursor: pointer;
+    box-shadow: 0 0 15px cyan;
+    transition: 0.3s;
+}
+
+#voice-btn:hover {
+    background: rgba(0, 255, 255, 0.3);
+    transform: scale(1.1);
 }
