@@ -252,11 +252,17 @@ body::-webkit-scrollbar-thumb:hover {
 .info-box li.linkedin a:hover {
     text-decoration: underline;
 }
-#voice-btn {
+#voice-container {
     position: fixed;
     top: 20px;
     right: 20px;
     z-index: 101;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#voice-btn {
     padding: 10px 15px;
     font-size: 18px;
     border: 2px solid cyan;
@@ -271,4 +277,11 @@ body::-webkit-scrollbar-thumb:hover {
 #voice-btn:hover {
     background: rgba(0, 255, 255, 0.3);
     transform: scale(1.1);
+}
+
+#voice-label {
+    margin-top: 5px;
+    font-size: 14px;
+    color: cyan;
+    text-align: center;
 }
