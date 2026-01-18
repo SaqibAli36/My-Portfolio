@@ -13,11 +13,11 @@ COPY requirements.txt .
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# Copy app files
+# Copy the rest of the app
 COPY . .
 
-# Expose default Flask port (Railway uses $PORT env variable)
+# Expose port 5000 (Flask default)
 EXPOSE 5000
 
-# Run Flask app using Railway's $PORT if available
-CMD ["sh", "-c", "python app.py"]
+# Run Flask app
+CMD ["python", "app.py"]
