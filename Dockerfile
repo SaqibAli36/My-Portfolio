@@ -16,8 +16,8 @@ RUN pip install -r requirements.txt
 # Copy the rest of the app
 COPY . .
 
-# Expose port 5000 (Flask default)
+# Expose the port
 EXPOSE 5000
 
-# Run Flask app
-CMD ["python", "app.py"]
+# Run Gunicorn with 4 workers, bind to 0.0.0.0:$PORT
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:app"]
