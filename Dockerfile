@@ -2,8 +2,8 @@
 FROM python:3.11-slim
 
 # Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 # Set working directory
 WORKDIR /app
@@ -16,8 +16,8 @@ RUN pip install -r requirements.txt
 # Copy app files
 COPY . .
 
-# Expose port (Railway uses $PORT automatically, fallback 5000)
+# Expose default Flask port (Railway uses $PORT env variable)
 EXPOSE 5000
 
-# Run Flask app
-CMD ["python", "app.py"]
+# Run Flask app using Railway's $PORT if available
+CMD ["sh", "-c", "python app.py"]
