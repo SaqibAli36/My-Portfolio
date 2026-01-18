@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Saqib Ali | Iron Man Portfolio</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Three.js -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+</head>
+<body>
+
+<!-- HUD HEADER -->
+<div class="hud">
+    <img src="{{ url_for('static', filename='assets/profile.jpg') }}" class="profile-pic">
+    <h1>SAQIB ALI</h1>
+    <p>Software Engineer | AI | Cybersecurity | Web</p>
+</div>
+
+<!-- ARC REACTOR -->
+<div id="reactor-container"></div>
+
+<!-- NAVIGATION PANELS -->
+<div class="panels">
+    <div class="panel" onclick="scrollToSection('projects')">Projects</div>
+    <div class="panel" onclick="scrollToSection('skills')">Skills</div>
+    <div class="panel" onclick="scrollToSection('contact')">Contact</div>
+</div>
+
+<!-- SECTIONS -->
+<section id="projects">
+    <h2>Projects</h2>
+    <div class="section-wrapper">
+        <!-- 3D container on LEFT -->
+        <div id="projects-3d" class="section-3d"></div>
+        <!-- Info Box on RIGHT -->
+        <div class="info-box">
+            <ul>
+                <li>AI Voice Assistant</li>
+                <li>5-Mic Voice Chat App</li>
+                <li>Cybersecurity Tools</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="skills">
+    <h2>Skills</h2>
+    <div class="section-wrapper">
+        <div id="skills-3d" class="section-3d"></div>
+        <div class="info-box">
+            <ul>
+                <li>Python / Flask</li>
+                <li>JavaScript / Three.js</li>
+                <li>Cybersecurity</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Contact</h2>
+    <div class="section-wrapper">
+        <div id="contact-3d" class="section-3d"></div>
+        <div class="info-box">
+            <ul>
+                <li>Email: saqib@example.com</li>
+                <li>GitHub: github.com/saqibali</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- JS FILES -->
+<script src="{{ url_for('static', filename='js/arc_reactor.js') }}"></script>
+<script src="{{ url_for('static', filename='js/projects_3d.js') }}"></script>
+<script src="{{ url_for('static', filename='js/skills_3d.js') }}"></script>
+<script src="{{ url_for('static', filename='js/contact_3d.js') }}"></script>
+
+<script>
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+}
+
+// Keyboard navigation
+document.addEventListener("keydown", function(e){
+    const scrollAmount = 100; // pixels per key press
+    if(e.key === "ArrowDown"){
+        window.scrollBy({top: scrollAmount, left:0, behavior:"smooth"});
+    } else if(e.key === "ArrowUp"){
+        window.scrollBy({top:-scrollAmount, left:0, behavior:"smooth"});
+    }
+});
+</script>
+
+</body>
+</html>

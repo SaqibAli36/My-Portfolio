@@ -1,0 +1,183 @@
+/* ======================== */
+/*      BODY & GENERAL      */
+/* ======================== */
+body {
+    margin: 0;
+    background: radial-gradient(circle, #020024, #000);
+    color: #00f6ff;
+    font-family: "Orbitron", Arial, sans-serif;
+    overflow-y: scroll;          /* vertical scroll only */
+    overflow-x: hidden;          /* no horizontal scroll */
+    scroll-behavior: smooth;
+    padding-top: 140px;          /* prevent HUD overlap */
+    padding-bottom: 120px;       /* prevent panels overlap */
+}
+
+/* ======================== */
+/*           HUD            */
+/* ======================== */
+.hud {
+    position: fixed;
+    top: 20px;
+    left: 30px;
+    text-shadow: 0 0 15px cyan;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 100;
+}
+
+.hud .profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 2px solid cyan;
+}
+
+.hud h1 {
+    font-size: 36px;
+    margin: 0;
+    text-align: center;
+}
+
+.hud p {
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+/* ======================== */
+/*       PANELS (BOTTOM)    */
+/* ======================== */
+.panels {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    z-index: 100;
+}
+
+.panel {
+    padding: 15px 30px;
+    border: 2px solid cyan;
+    border-radius: 8px;
+    background: rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 20px cyan;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+}
+
+.panel:hover {
+    transform: scale(1.1);
+    background: rgba(0, 255, 255, 0.3);
+}
+
+/* ======================== */
+/*      SECTION WRAPPER     */
+/* ======================== */
+.section-wrapper {
+    display: flex;
+    align-items: center; /* vertically center info box */
+    justify-content: center;
+    width: 100%;
+    margin: 50px 0;
+    gap: 50px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+/* ======================== */
+/*        3D SECTIONS       */
+/* ======================== */
+.section-3d {
+    flex: 1 1 55%;
+    height: 400px;
+    min-width: 300px;
+    max-width: 600px;
+    position: relative;
+    overflow: hidden; /* ensure orbiters stay inside */
+}
+
+/* ======================== */
+/*        INFO BOXES        */
+/* ======================== */
+.info-box {
+    flex: 0 0 35%;
+    padding: 20px;
+    border: 1px solid cyan;
+    border-radius: 10px;
+    background: rgba(0, 255, 255, 0.05);
+    box-shadow: 0 0 15px cyan;
+    min-width: 250px;
+    max-width: 400px;
+    display: flex;
+    align-items: center;       /* vertical center */
+    justify-content: center;   /* optional: center text inside */
+    z-index: 10;               /* stay above 3D canvas */
+}
+
+/* ======================== */
+/*       HEADINGS & TEXT    */
+/* ======================== */
+h2 {
+    text-align: center;
+    font-size: 28px;
+    text-shadow: 0 0 10px cyan;
+    margin-bottom: 20px;
+}
+
+/* ======================== */
+/*       SCROLLBAR STYLE    */
+/* ======================== */
+body::-webkit-scrollbar {
+    width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #020024;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: cyan;
+    border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: #00f6ff;
+}
+
+/* ======================== */
+/*   RESPONSIVE LAYOUT      */
+/* ======================== */
+@media screen and (max-width: 1100px) {
+    .section-wrapper {
+        flex-direction: column; /* stack 3D above info */
+        align-items: center;
+        gap: 30px;
+    }
+    .section-3d, .info-box {
+        flex: 1 1 90%;
+        max-width: 90%;
+        min-width: auto;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .hud h1 {
+        font-size: 28px;
+    }
+    .hud p {
+        font-size: 12px;
+    }
+    .hud .profile-pic {
+        width: 60px;
+        height: 60px;
+    }
+}
